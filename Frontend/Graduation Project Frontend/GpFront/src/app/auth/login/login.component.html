@@ -1,0 +1,87 @@
+		<!DOCTYPE html>
+	<html dir="rtl" lang="ar">
+		<head>
+			<title>Login Page</title>
+		   <!--Made with love by Mutiullah Samim -->
+		   <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+		<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+		<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+			<!--Bootsrap 4 CDN-->
+			<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+			
+			<!--Fontawesome CDN-->
+			<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+		
+			<!--Custom styles-->
+			<link rel="stylesheet" type="text/css" href="login.component.css">
+		</head>
+		<body>
+		<div class="container">
+			<div class="d-flex justify-content-center h-100">
+				<div class="card " >
+					<div class="card-header" >
+						<h3></h3>
+						<!-- <div class="d-flex justify-content-end social_icon float-left">
+							<span><i class="fab fa-facebook-square"></i></span>
+							<span><i class="fab fa-google-plus-square"></i></span>
+							<span><i class="fab fa-twitter-square"></i></span>
+						</div> -->
+					</div>
+					<div class="card-body" >
+						<form>
+							<div class="wow fadeInUp" data-wow-delay="0.3s">
+                                   <div class="col-md-12 col-sm-12">
+                                     <label for="name" style="color: white; float: right;">الاسم</label>
+                                     <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name" placeholder="اسم المستخدم" style="text-align:right">
+                                     <label for="password" style="color: white;float: right;">كلمة المرور</label>
+                                     <input type="password" class="form-control" id="password" name="password" [(ngModel)]="pass"  placeholder="كلمة المرور" style="text-align:right">
+									 <button type="submit" class="form-control mt-3 center" id="cf-submit"  (click)="login()" name="submit" color style="background-color: #e9e7e8; color:  #021830; border: none; width: 100px; float: left;">دخول</button>
+
+                                   </div>
+                              </div>
+							<!-- <div class="input-group form-group ">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-user"></i></span>
+								</div>
+								<input type="text" class="form-control "  [(ngModel)]="name" placeholder="اسم المستخدم">
+								
+							</div>
+							<div class="input-group form-group" dir="rtl">
+								<div class="input-group-prepend">
+									<span class="input-group-text"><i class="fas fa-key"></i></span>
+								</div>
+								<input type="password" class="form-control " [(ngModel)]="pass" class="text-align-right"  placeholder="كلمه المرور"  >
+							</div>
+							<div class="row align-items-center remember">
+								<input type="checkbox">تذكرني
+							</div> 
+							<div class="form-group">
+								<button type="submit" class="form-control mt-3 center" id="cf-submit"  (click)="login()" name="submit" color style="background-color: #021830; color: white; border: none; width: 100px;">تسجيل</button>
+
+								 <input type="submit" value="دخول"  (click)="login()" style="width: 120px; background-color: #021830;" class="btn btn-dark m-2"> 
+							</div> -->
+						</form>
+					</div>
+					<div class="card-footer">
+						<div class="d-flex justify-content-center links">
+						<span style="color: #021830;">مستخدم جديد؟</span> 
+						<a style="color: #e9e7e8;" routerLink="/Register">انضم الان</a>
+						</div>
+						<!-- <div class="d-flex justify-content-center">
+							<a href="#">نسيت كلمه المرور؟</a>
+						<div class="row align-items-center remember">
+							<input type="checkbox">تذكرني
+						</div> 
+						 <div class="form-group">
+							 <input type="submit" value="دخول" class="btn float-left login_btn">
+							<button (click)="login()">دخول </button>
+							<p id="logErr">{{logError}}</p>
+
+						</div> 
+					</div> -->
+				</div>
+			</div>
+		</div>
+		</div>
+		</body>
+		</html>

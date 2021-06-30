@@ -1,0 +1,72 @@
+
+    
+
+
+<div class="p-fluid" [hidden]="false">
+<div class="row">
+
+<div class="col">
+    
+
+    <div class="p-field p-grid">
+        <label id="t2" for="firstname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0 justify-content-right " >اسم المستخدم</label>
+        <div class="p-col-12 p-md-10">
+            <input id="firstname" type="text" [(ngModel)]="username" pInputText >
+        </div>
+    </div>
+</div>
+
+<div class="col">
+    
+
+    <div class="p-field p-grid">
+        <label id="t2"  for="lastname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">البريد الالكتروني</label>
+        <div class="p-col-12 p-md-10">
+            <input id="lastname" [(ngModel)]="email" type="text" pInputText>
+        </div>
+    </div>
+</div>
+</div>
+
+<div class="row">
+<div class="col">
+    
+
+    <div class="p-field p-grid">
+      <label id="t2" for="lastname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">رقم التليفون</label>
+      <div class="p-col-12 p-md-10">
+          <input id="lastname" [(ngModel)]="phone" type="text" pInputText>
+      </div>
+  </div>
+</div>
+
+<div class="col">
+
+  <div class="p-field p-grid">
+    <label id="t2" for="lastname" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">العنوان</label>
+    <div class="p-col-12 p-md-10">
+        <input id="lastname" [(ngModel)]="Address" type="text" pInputText>
+    </div>
+</div>
+</div>
+</div>
+
+<div class="row">
+    
+
+<div class="col">
+
+<div class="p-field p-grid">
+  <label id="t2" for="dob" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">تاريخ الميلاد </label>
+  <div class="p-col-12 p-md-10 m-2">
+      <input id="lastname" [(ngModel)]="DOB" type="text" pInputText>
+      <!-- <p-calendar  [(ngModel)]="DOB" showTime="true" hourFormat="12" ></p-calendar> -->
+  </div>
+</div>
+</div>
+<div class="col">
+
+  <button pButton style="background-color: #021830; margin-top: 45px;" type="button" label="تعديل " (click)="submit()"></button>
+  </div>
+</div>
+</div>

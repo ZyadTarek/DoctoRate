@@ -1,0 +1,57 @@
+
+<html dir="rtl" lang="ar">
+<div class="container">
+  <div>
+    <p-checkbox label="مفتوح" [(ngModel)]="openNowFlag" binary="true" ></p-checkbox>
+    <p-dropdown class="m-3" [options]="types" [(ngModel)]="selectedType" optionLabel="type_name_ar" optionValue="type_id"></p-dropdown>
+
+    <p-dropdown filter="true" (onChange)="changeGover()" class="m-3" [options]="govers" [(ngModel)]="selectedGover" optionLabel="governorate_name_ar" optionValue="id"></p-dropdown>
+
+    <p-dropdown filter="true" *ngIf="cityFlag" class="m-3" [options]="cities" [(ngModel)]="selectedCity" optionLabel="city_name_ar" optionValue="id"></p-dropdown>
+
+    <input class="m-3" [(ngModel)]="searchText" placeholder="search for">
+    
+    <br>
+    <button  (click)="search()">search</button>
+    <button  (click)="clearFilter()">clear filters</button>
+  </div>
+</div>
+
+<br><br><br>
+<button  (click)="getLocation()">get Location</button>
+
+<agm-map style="height: 500px;"  [zoom]="15" [latitude]='lat' [longitude]='lng'>
+  <agm-marker [latitude]="lat" [longitude]="lng"></agm-marker>
+</agm-map>
+
+
+<div class="container m-3">
+  <a  *ngFor="let item of places" [routerLink]="['/Detail', item.place_id]" >
+    <div class="card " >
+      <div class="card-body">
+        <div class="row">
+          <div class="col-2"><img width="70" height="70" [src]="item.icon"></div>     
+          <div class="col-8">
+            <div class="card-body">
+              <div class="row">{{item.name}}</div>
+              <div class="row">{{item.opening_hours}}</div>  
+              <div class="row">{{item.formatted_address}}</div>
+              <div class="row">{{item.rating}}</div>
+            </div>
+          </div>
+          
+        </div>    
+      </div>
+    </div>
+  </a>
+
+  <button *ngIf="moreFlag" (click)="seeMore()" type="button" class="btn btn-info m-3">اضغط للمزيد من النتائج</button>
+
+</div>
+
+
+
+
+</html>
+
+

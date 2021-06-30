@@ -1,0 +1,12 @@
+G:\ITI\GP\Backend\MedicalApp\Repository\bin\Debug\net5.0\Repository.deps.json
+G:\ITI\GP\Backend\MedicalApp\Repository\bin\Debug\net5.0\Repository.dll
+G:\ITI\GP\Backend\MedicalApp\Repository\bin\Debug\net5.0\ref\Repository.dll
+G:\ITI\GP\Backend\MedicalApp\Repository\bin\Debug\net5.0\Repository.pdb
+G:\ITI\GP\Backend\MedicalApp\Repository\obj\Debug\net5.0\Repository.GeneratedMSBuildEditorConfig.editorconfig
+G:\ITI\GP\Backend\MedicalApp\Repository\obj\Debug\net5.0\Repository.AssemblyInfoInputs.cache
+G:\ITI\GP\Backend\MedicalApp\Repository\obj\Debug\net5.0\Repository.AssemblyInfo.cs
+G:\ITI\GP\Backend\MedicalApp\Repository\obj\Debug\net5.0\Repository.csproj.CoreCompileInputs.cache
+G:\ITI\GP\Backend\MedicalApp\Repository\obj\Debug\net5.0\Repository.dll
+G:\ITI\GP\Backend\MedicalApp\Repository\obj\Debug\net5.0\ref\Repository.dll
+G:\ITI\GP\Backend\MedicalApp\Repository\obj\Debug\net5.0\Repository.pdb
+G:\ITI\GP\Backend\MedicalApp\Repository\obj\Debug\net5.0\Repository.csprojAssemblyReference.cache

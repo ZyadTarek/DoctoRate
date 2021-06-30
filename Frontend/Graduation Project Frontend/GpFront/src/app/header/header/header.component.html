@@ -1,0 +1,154 @@
+  <nav *ngIf="IsAdminRole == false || IsAdminRole == undefined" class="navbar navbar-expand-lg navbar-dark "  role="navigation" style="background-color: #021830; color: white;">
+
+  <div class="container">
+
+    <img src="../../../assets/images/902bb673-fd4c-42b7-b26d-f51105b634ea.jpg" style="width: 65px; margin-right: 50px;" alt="">
+    
+    <!-- <a class="navbar-brand" href="#">طبيبي</a> -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ">
+        <li class="nav-item ">
+          <a class="nav-link" routerLinkActive="active" routerLink="home">الصفحة الرئيسية </a>
+        </li>
+        <li class="nav-item ">
+          <a class="nav-link" routerLinkActive="active" routerLink="about">عنا</a>
+        </li>
+        <div *ngIf="IsAdminRole == true">
+        <li class="nav-item ">
+          <a class="nav-link" routerLinkActive="active" routerLink="dashboard">ادارة الموقع</a>
+        </li>
+      </div>
+      </ul>
+
+      <ul class="navbar-nav mr-auto">
+        <div *ngIf="!IsThereAnyUser()">
+          <ul class="navbar-nav mr-auto">
+
+        <li class="nav-item mr-auto">
+          <a class="nav-link" routerLinkActive="active" routerLink="Login">تسجيل الدخول </a>
+        </li>
+        <li class="nav-item mr-auto">
+          <a class="nav-link" routerLinkActive="active" routerLink="Register">انضم الينا</a>
+        </li>
+          </ul>
+     </div>
+     <div style="width: 370px;" dir="rtl" id="Av-div" *ngIf="IsThereAnyUser()">
+
+      <!-- <li class="nav-item mr-auto"> -->
+        <div class="row">
+          <div class="col-5">
+            <li class="nav-item mr-auto mt-1">
+              <span style="font-size: large;font-weight: bold; float: right;" lang="ar" dir="rtl" >مرحباً {{CurrentUser.username}}<i class="far fa-smile-wink fa-lg pr-2"></i></span>
+            </li>
+          </div>
+
+        <div class="col-2 div">
+          <!-- <div *ngIf="hasPicture == false"> -->
+              <a *ngIf="hasPicture == false" style="text-decoration: none;color:#021830;" routerLink="UserProfile">
+              <p-avatar [label]="userInitials" size="large"></p-avatar>
+              </a>
+          <!-- </div>   -->
+        <!-- <div *ngIf="hasPicture == true"> -->
+          <a  *ngIf="hasPicture == true" style="text-decoration: none;" routerLink="UserProfile">
+          <img id="userImg" width="50px" height="50px" [src]="userInitials" alt="User Profile Picture" style="border-radius: 50%;">
+          </a>
+        <!-- </div>   -->
+      </div>
+      <!-- </li> -->
+
+    <div class="col-5">
+      <li class="nav-item mr-auto">
+        <a style="float: right" class="nav-link" routerLinkActive="active" routerLink="home" (click)="logout()">تسجيل الخروج </a>
+      </li>
+      </div>
+  </div>
+     </div>
+    </ul>
+
+    </div>
+  </div>
+  </nav>
+  <div *ngIf="IsAdminRole == true">
+  <nav class="navbar navbar-expand-lg navbar-dark fixed-top"  role="navigation" style="background-color: #021830; color: white;">
+
+    <div class="container">
+  
+      <img src="../../../assets/images/902bb673-fd4c-42b7-b26d-f51105b634ea.jpg" style="width: 65px; margin-right: 50px;" alt="">
+      
+      <!-- <a class="navbar-brand" href="#">طبيبي</a> -->
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+  
+      <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ">
+          <li class="nav-item ">
+            <a class="nav-link" routerLinkActive="active" routerLink="home">الصفحة الرئيسية </a>
+          </li>
+
+          
+
+          <li class="nav-item ">
+            <a class="nav-link" routerLinkActive="active" routerLink="about">عنا</a>
+          </li>
+          <div *ngIf="IsAdminRole == true">
+          <li class="nav-item ">
+            <a class="nav-link" routerLinkActive="active" routerLink="dashboard">ادارة الموقع</a>
+          </li>
+        </div>
+        </ul>
+  
+        <ul class="navbar-nav mr-auto">
+          <div *ngIf="!IsThereAnyUser()">
+            <ul class="navbar-nav mr-auto">
+  
+          <li class="nav-item mr-auto">
+            <a class="nav-link" routerLinkActive="active" routerLink="Login">تسجيل الدخول </a>
+          </li>
+          <li class="nav-item mr-auto">
+            <a class="nav-link" routerLinkActive="active" routerLink="Register">انضم الينا</a>
+          </li>
+            </ul>
+       </div>
+       <div style="width: 370px;" dir="rtl" id="Av-div" *ngIf="IsThereAnyUser()">
+  
+        <!-- <li class="nav-item mr-auto"> -->
+          <div class="row">
+            <div class="col-5">
+              <li class="nav-item mr-auto mt-1">
+                <span style="font-size: large;font-weight: bold; float: right;" lang="ar" dir="rtl" >مرحباً {{CurrentUser.username}}<i class="far fa-smile-wink fa-lg pr-2"></i></span>
+              </li>
+            </div>
+  
+          <div class="col-2 div">
+            <!-- <div *ngIf="hasPicture == false"> -->
+                <a *ngIf="hasPicture == false" style="text-decoration: none;color:#021830;" routerLink="UserProfile">
+                <p-avatar [label]="userInitials" size="large"></p-avatar>
+                </a>
+            <!-- </div>   -->
+          <!-- <div *ngIf="hasPicture == true"> -->
+            <a  *ngIf="hasPicture == true" style="text-decoration: none;" routerLink="UserProfile">
+            <img id="userImg" width="50px" height="50px" [src]="userInitials" alt="User Profile Picture" style="border-radius: 50%;">
+            </a>
+          <!-- </div>   -->
+        </div>
+        <!-- </li> -->
+  
+      <div class="col-5">
+        <li class="nav-item mr-auto">
+          <a style="float: right" class="nav-link" routerLinkActive="active" routerLink="home" (click)="logout()">تسجيل الخروج </a>
+        </li>
+        </div>
+    </div>
+       </div>
+      </ul>
+  
+      </div>
+    </div>
+    </nav>
+  <div style="height: 65px;"></div>
+  </div>

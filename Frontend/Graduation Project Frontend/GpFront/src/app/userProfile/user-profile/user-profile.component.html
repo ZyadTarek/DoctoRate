@@ -1,0 +1,113 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<div class="container emp-profile mt-5">
+            <form method="post">
+                <div class="row" >
+                    <!-- <div class="col-md-5" >
+                    </div> -->
+                    <div class="col-md-5" >
+                        <div id="name"> 
+                        <div class="profile-head">
+                                    <h2 id="t1" style="font-size: 45px; font-family:serif; font-weight: bold;" >
+                                        {{data.username}}
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+
+                                    <div class="col-md-5" >
+
+
+                            <ul  class="nav nav-tabs" id="myTab" role="tablist">
+                                <li class="nav-item">
+                                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="" (click)="reload()" role="tab" aria-controls="home" (aria-selected)="about">البيانات الشخصية</a>
+                                </li>
+                                <!-- <li class="nav-item">
+                                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Timeline</a>
+                                </li> -->
+                                <li class="nav-item">
+                                    <a (click)="getUserFavorites()" class="nav-link" id="profile-tab" data-toggle="tab" (click)="showFav()" href="#favorites" role="tab" aria-controls="profile" (aria-selected)="fav">المفضل</a>
+                                </li>
+                            </ul>
+                        </div>
+
+                    <div class="col-md-2" style="text-align: left;">
+                        <input type="submit" class="profile-edit-btn" name="btnAddMore" value="تعديل البيانات" style="background: #021830; color: white;" (click)="editProfile()" />
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-md-5">
+                        <div class="profile-img">
+                            <img *ngIf="getProfilePicture() == true" [src]="url" alt=""/>
+                            <p-avatar *ngIf="getProfilePicture() == false" [label]="data.username[0].toUpperCase() + data.username[1].toUpperCase()" size="xlarge"></p-avatar>
+                            <div class="file btn btn-lg btn-primary">
+                                تغيير الصوره الشخصيه
+                                <input type="file" name="file" (change)="onSelectFile($event)" />
+                            </div>
+                            <button class="btn btn-lg btn-danger" (click)="DeleteProfilePicture()">
+                                حذف الصورة الشخصية
+                            </button>
+                        </div>
+                    </div>
+                    <!-- <div class="col-md-3">
+                        <div class="profile-work">
+                            <p>WORK LINK</p>
+                            <a href="">Website Link</a><br/>
+                            <a href="">Bootsnipp Profile</a><br/>
+                            <a href="">Bootply Profile</a>
+                            <p>SKILLS</p>
+                            <a href="">Web Designer</a><br/>
+                            <a href="">Web Developer</a><br/>
+                            <a href="">WordPress</a><br/>
+                            <a href="">WooCommerce</a><br/>
+                            <a href="">PHP, .Net</a><br/>
+                        </div>
+                    </div> -->
+                    <div class="col-7 mt-6">
+
+                        <app-data *ngIf="dataFlag"></app-data>
+                          <app-edit *ngIf="flag"></app-edit>
+                    </div>
+
+                        <!-- <div class="col-7"> -->
+                          <div class="tab-pane fade show active" id="favorites" role="tabpanel" aria-labelledby="home-tab">
+                            <div class="row">
+                                <div class="col-md-">
+                                    <div class="container text-center" >
+                                        <div class="container m-3 text-center">
+                                            <p-card id="fav-card" class="container p-shadow-24 m-3 p-3" *ngFor="let item of places">
+                                            <!-- <div [ngStyle]="{backgroundColor:'var(--blue-500)'}" > -->
+
+                                                <!-- <a [routerLink]="['/Detail', item.place_id]" style="text-decoration: none;"> -->
+                                                <ng-template pTemplate="header"class="w-50 text-center">
+                                                    <div class="w-50"><img style="margin-right: 6rem;width:70%" [src]="item.icon"></div>
+                                                </ng-template>
+                                                <div class="row mr-2"><strong>{{item.name}}</strong>
+                                                    <!-- <p-rating [(ngModel)]="item.rate" iconCancelClass=null disabled=true></p-rating>  -->
+                                                    <!-- <p-badge id="badge" [value]="getRating(item.rate)"severity="warning" class="mr-2"></p-badge> -->
+                                                    <p-button style="margin-right:1rem;" label=" " icon="pi pi-star" styleClass="p-button-secondary pr-1 w-75" iconPos="" [badge]="getRating(item.rate)" badgeClass="p-badge-secondary"></p-button>
+                                                </div>
+                                               <!-- </a> -->
+                                                <!-- <div class="row">
+
+                                                </div> -->
+                                                <ng-template pTemplate="footer">
+                                                    <div class="row">
+                                                        <p-toast></p-toast>
+                                                        <p-confirmPopup></p-confirmPopup>
+                                                        <button class="p-button-danger ml-2" (click)="confirm($event,item.place_id)" pButton icon="pi pi-times" iconPos="right" label="حذف من المفضلات"></button>
+                                                        <a [routerLink]="['/Detail', item.place_id]" class="btn btn-secondary" >رؤية المكان</a>
+                                                   </div>
+                                                    </ng-template>
+                                                <!-- </div> -->
+                                            </p-card>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div>
+                                    </div>
+                                <!-- </div> -->

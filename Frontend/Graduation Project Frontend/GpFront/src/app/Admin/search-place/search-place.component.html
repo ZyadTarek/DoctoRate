@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+  <meta charset="utf-8" />
+  <link rel="apple-touch-icon" sizes="76x76" href="../../../assets/img/apple-icon.png">
+  <link rel="icon" type="image/png" href="../../../assets/img/favicon.png">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <title>
+    Material Dashboard by Creative Tim
+  </title>
+  <meta content='width=device-width, initial-scale=1.0, shrink-to-fit=no' name='viewport' />
+  <!--     Fonts and icons     -->
+  <link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Roboto+Slab:400,700|Material+Icons" />
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <!-- CSS Files -->
+  <link href="../../../assets/css/material-dashboard.css" rel="stylesheet" />
+  <!-- CSS Just for demo purpose, don't include it in your project -->
+  <link href="../../../assets/demo/demo.css" rel="stylesheet" />
+</head>
+
+<body class="">
+  <div class="wrapper ">
+    <div class="sidebar" data-color="azure" data-background-color="purple" data-image="../assets/img/sidebar-1.jpg">
+      <div class="logo"><a href="#" class="simple-text logo-normal">
+        لوحة الادارة
+        </a></div>
+      
+      <div class="sidebar-wrapper">
+        <ul class="nav">
+             <li class="nav-item  " routerLinkActive="active">
+            <a class="nav-link" routerLink="/dashboard">
+              <i class="material-icons">dashboard</i>
+              <p>لوحة القيادة</p>
+            </a>
+          </li>
+          <li class="nav-item " routerLinkActive="active">
+            <a class="nav-link" routerLink="/notifications" >
+              <i class="material-icons"  >notifications</i>
+              <p>الاشعارات</p>
+            </a>
+          </li>
+
+          <li class="nav-item " routerLinkActive="active">
+            <a class="nav-link" routerLink="/manageadmins" >
+              <i class="material-icons">people_outline</i>
+              <p>اضافه مشرف</p>
+            </a>
+          </li>
+          <li class="nav-item " routerLinkActive="active">
+            <a class="nav-link" routerLink="/manageusers" >
+              <i class="material-icons">library_books</i>
+              <p>اداره المستخدمين </p>
+            </a>
+          </li>
+
+          <li class="nav-item " routerLinkActive="active">
+            <a class="nav-link" routerLink="/searchplace" >
+              <i class="material-icons">content_paste</i>
+              <p>بحث الاماكن</p>
+            </a>
+          </li>
+          <li class="nav-item " routerLinkActive="active">
+            <a class="nav-link" routerLink="/offers" >
+              <i class="material-icons">hotel_class</i>
+              <p>العروض</p>
+            </a>
+          </li>
+
+
+
+
+        </ul>
+      </div>
+    </div>
+    <div class="main-panel">
+      <!-- Navbar -->
+      <nav class="navbar navbar-expand-lg navbar-transparent navbar-absolute fixed-top ">
+        <div class="container-fluid">
+          <div class="navbar-wrapper">
+            <a class="navbar-brand" href="javascript:;"> قائمةالاماكن </a>
+          </div>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" aria-controls="navigation-index" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+            <span class="navbar-toggler-icon icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse justify-content-end">
+            <form class="navbar-form">
+              <div class="input-group no-border">
+                <input type="text" value="" class="form-control" placeholder="بحث..."[(ngModel)]="searchterm">
+                <button type="submit" class="btn btn-white btn-round btn-just-icon">
+                  <i class="material-icons">search</i>
+                  <div class="ripple-container"></div>
+                </button>
+                <div class="col">
+                  <div class="row mx-auto"><p-dropdown  [(ngModel)]="filterValue" [options]="types"  optionLabel="type_name_ar" optionValue="type_id" (onChange)="search()"></p-dropdown></div>
+                  <!-- <kendo-dropdownlist [options]="types" [(ngModel)]="filterterm" (filterChange)="filtered_loc($event)"> </kendo-dropdownlist> -->
+
+                </div>
+               
+              </div>
+            </form>
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link" href="javascript:;">
+                  <i class="material-icons">dashboard</i>
+                  <p class="d-lg-none d-md-block">
+                    Stats
+                  </p>
+                </a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link" href="http://example.com" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                  <i class="material-icons">notifications</i>
+                  <span class="notification">{{this.count}}</span>
+                  <p class="d-lg-none d-md-block">
+                    Some Actions
+                  </p>
+                </a>
+              
+              </li>
+             
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- End Navbar -->
+      <!-- <p-dropdown  [options]="types" [(ngModel)]="selectedType" optionLabel="type_name_ar" optionValue="type_id"></p-dropdown> -->
+      <div class="content">
+        <div class="container-fluid">
+      
+          <div class="row">
+
+              <div class="card">
+                <div class="card-header card-header-info">
+                  <h4 class="card-title ">الاماكن</h4>
+                  <p class="card-category"> كل الاماكن الموجوده</p>
+                </div>
+                <div class="card-body table-hover table-stripped">
+                  <div class="table-responsive ">
+                    <table class="table">
+                      <thead class=" text-primary">
+                        <th>
+                          الرقم
+                        </th>
+                        <th>
+اسم المكان                        </th>
+                        <th>
+                          النوع
+                        </th>
+                        <th>
+                          العمليات
+                        </th>
+
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let item of filteredplaces;let i=index;">
+                          <td>{{i+1}}</td>
+                          <td>{{item.name}}</td>
+                          <td>{{replaceType(item.type)}}</td>
+                          <td>
+                          <!-- <p data-placement="top" data-toggle="tooltip" title="Edit" (click)="editUser(edit, user)"><button class="btn btn-primary btn-xs" data-title="Edit" data-toggle="modal" data-target="#edit" ><span class="glyphicon glyphicon-pencil"></span></button></p> -->
+                            <button class="btn btn-warning mr-2" (click)="open(content,item.place_id)" data-target="#edit" >تعديل</button>
+                            <!-- <button class="btn btn-primary" (click)="Delete(item.place_id)">حذف</button> -->
+                            <p-toast position="top-center"></p-toast>
+                            <p-confirmPopup></p-confirmPopup>
+                            <button class="btn btn-danger mr-2" (click)="confirm($event,item.place_id)">حذف</button>
+                                                      
+                            <button class="btn btn-info mr-2" [routerLink]="['/Detail', item.place_id]">تفاصيل</button>
+                            <button class="btn btn-black mr-2" (click)="openOffer(Offer,item.place_id)">إضافه عرض</button>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+
+
+          </div>
+        </div>
+      </div>
+    <ng-template #delete let-c="close" let-d="dismiss" class="modal" >
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">delete</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d();">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+        <h2>Are you sure to delete {{placetodel.name}} </h2>
+        </div>
+
+      </ng-template>
+    <ng-template #content let-c="close" let-d="dismiss" class="modal" rtl="true" >
+        <div style="float: right;" class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">تعديل المكان</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d();">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body container">
+           <label style="color:black;" for="name"> اسم المكان</label>
+           <br>
+          <input  id="name" name="name" class="m-2" type="text" [(ngModel)]="placetoEdit.name">
+          <br>
+          <label style="color:black;" for="type"> نوع المكان</label>
+          <br>
+          <input id="type" name="type" class="m-2" type="text" [(ngModel)]="placetoEdit.type">
+
+        <br>
+          <button class="btn btn-success mr-2" (click)="saveedit()"  >حفظ</button>
+           <button class="btn btn-success mr-2" (click)="close()" >الغاء</button>
+        </div>
+      </ng-template>
+      <!-- ------------------------------------ -->
+
+
+      <ng-template #Offer let-c="close" let-d="dismiss" class="modal" >
+        <div class="modal-header">
+          <h4 class="modal-title" id="modal-basic-title">إضافه عرض</h4>
+          <button type="button" class="close" aria-label="Close" (click)="d();">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+
+          <!-- <input type="text" [(ngModel)]="AddOffer.place_id" placeholder="placename">
+          <br> -->
+          <p>وصف العرض</p><input class="mb-2" type="text" [(ngModel)]="AddOffer.comment">
+          <br>
+          <p>نسبه الخصم</p><input class="mb-2" type="text" [(ngModel)]="AddOffer.offer_percent">
+          <br>
+          <p>تاريخ انتهاء العرض</p><input class="mb-2" type="text" [(ngModel)]="AddOffer.expired_date">
+
+        <br>
+          <button class="btn btn-success mr-2" (click)="SaveOffer()"  >حفظ</button>
+           <button class="btn btn-success mr-2" (click)="close()" >الغاء</button>
+        </div>
+
+      </ng-template>
+      
+      <!-- -------------------------------------- -->
+    </div>
+  </div>
+
+
+
+</body>
+
+</html>

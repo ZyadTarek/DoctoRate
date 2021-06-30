@@ -1,0 +1,32 @@
+/* You can add global styles to this file, and also import other style files */
+@import"../node_modules/primeicons/primeicons.css";
+@import "../node_modules/primeng/resources/themes/saga-blue/theme.css";
+@import"../node_modules/primeng/resources/primeng.min.css";
+@import "~alertifyjs/build/css/alertify.min.css";
+
+.p-rating .p-rating-icon.pi-star, .p-rating:not(.p-disabled):not(.p-readonly) .p-rating-icon:hover{
+    color: gold !important;
+}
+.p-avatar{
+    background-color: rgb(178, 153, 196);
+}
+.p-avatar{
+  background-color: #acd6ec;
+
+}
+.p-avatar.p-avatar-xl{
+  width: 8rem;
+  height: 8rem;
+  font-size: 4rem;
+  margin-bottom: 2.1rem;
+  /* border-radius: 50%; */
+}
+.p-avatar-lg{
+  border-radius: 50%;
+}
+.pi.pi-star{
+    color: gold;
+}
+#user-avatar{
+  border-radius: 50%;
+}

@@ -1,0 +1,278 @@
+
+<!-- <div class="card"> -->
+    <!-- <img class="card-img-top" src="holder.js/100x180/" alt=""> -->
+    <!-- <div class="card-body"> -->
+        <!-- <h3 class="card-title">{{place.result.name}}</h3> -->
+        <!-- <h4 class="card-text">Phone number: {{place.result.international_phone_number}}</h4>
+        <h4 class="card-text">Address: {{place.result.formatted_address}}</h4>
+        <h5 class="card-text">Open Now: {{place.result.opening_hours.open_now}}</h5>
+        <h5 class="card-text">Open Now: {{place.result.geometry.location.lat}}</h5>
+        <h5 class="card-text">Open Now: {{place.result.geometry.location.lng}}</h5>
+        <h6>Schedule:</h6>
+        <p class="card-text"*ngFor="let day of place.result.opening_hours.weekday_text">{{day}}</p>
+    </div> -->
+    <div class="container">
+        <div >
+        <p-card >
+          <ng-template pTemplate="header">
+            <div class="text-center" style="margin-top: 10px;">
+              <img style="margin-top: 10px;" class="w-25" [src]="this.place.result.icon"alt="Place Icon"><br><br>
+              <h3>{{place.result.name}}</h3>
+            </div>
+          </ng-template>
+          <div style="text-align: right;">
+          <p-rating [(ngModel)]="val" iconCancelClass=null disabled=true></p-rating>  {{val}}
+          <h4><i class="pi pi-phone"></i> رقم الهاتف: {{place.result?.international_phone_number}}</h4>
+            <h4><i class="pi pi-map-marker"></i> العنوان: {{place.result.formatted_address}}</h4>
+            <div *ngIf="hasSchedule">
+            <h5><i class="pi pi-lock-open"></i> مفتوح الآن: {{IsOpen(place.result.opening_hours?.open_now)}}</h5><br>
+            <p-fieldset legend="المواعيد" [toggleable]="true">
+              <p class="text-center"*ngFor="let day of place.result.opening_hours?.weekday_text">{{day}}</p>
+          </p-fieldset>
+          </div>
+        </div>
+          <ng-template pTemplate="footer">
+            <!-- <div *ngIf="userAvailable == true"> -->
+                <button pButton class="p-button-success" [disabled]="placeSaved" [label]="favBtnTitle" [icon]="favIcon" iconPos="right" (click)="Save()"></button>
+                <p-dialog rtl="true" blockScroll="true" modal="true" header="عفوا !" [(visible)]="display"[breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}">
+                  <p>ليس لديك الصلاحية لاستخدام هذه الميزة .. انضم لنا الآن و تمتع بمميزات اكثر</p>
+                  <p-footer>
+                     <div class="row container" style="text-align: center;">
+                      <div class="text-center">
+                      <a pButton style="text-decoration: none;" class="p-button-primary mr-2" label="تسجيل الدخول" icon="pi pi-check" iconPos="right" routerLink="/Login" routerLinkActive="active" ></a>
+                      <a pButton style="text-decoration: none;" class="p-button-secondary mr-2" label="انضم الان" icon="pi pi-check" iconPos="right" routerLink="/Register" routerLinkActive="active" ></a>
+                  </div>
+                  </div>
+                  </p-footer>
+              </p-dialog>
+            <!-- </div>  -->
+        </ng-template>
+
+
+
+
+
+
+
+      </p-card>
+    </div>
+    </div>
+        <p-toast></p-toast>
+
+
+        <br><br>
+        <div class="text-center">
+        <button class="text-center btn btn-primary mb-4" [hidden]="viewMap" (click)="viewMap =! viewMap">عرض الخريطة</button>
+        </div>
+        <div class="container text-center" *ngIf = "viewMap">
+        <p>الخريطة</p>
+        <agm-map [zoom]="17" [latitude]='place.result.geometry.location.lat' [longitude]='place.result.geometry.location.lng'>
+            <agm-marker [latitude]="place.result.geometry?.location.lat" [longitude]="place.result.geometry?.location.lng"></agm-marker>
+        </agm-map>
+        </div>
+    <!-- </div> -->
+    <!-- <div class="text-center"> -->
+    <!-- <button pButton class="p-button-warning"  label="Click" icon="pi pi-check" iconPos="left"></button> -->
+    <!-- <p-rating [(ngModel)]="val"></p-rating> -->
+    <!-- </div> -->
+    <!-- <h1>My First Google Map</h1>
+
+    <div id="googleMap" style="width:100%;height:400px;" src="https://www.google.com/maps/search/?api=1&query=47.5951518,-122.3316393&query_place_id=ChIJKxjxuaNqkFQR3CK6O1HNNqY"></div>
+
+    <script>
+    function myMap() {
+    var mapProp= {
+      center:new google.maps.LatLng(Number(place.result.geometry.location.lat),Number(place.result.geometry.location.lng)),
+      zoom:5,
+    };
+    var map = new google.maps.Map(document.getElementById("googleMap"),mapProp);
+    }
+    </script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBD77-EivcGrFUZAn0sLFA33xachzYoUkw&callback=myMap"></script> -->
+    <!-- <div id="map"></div>
+    <script>
+      let map;
+      // Initialize and add the map
+      function initMap() {
+        // The location of Uluru
+        const uluru = { lat: -25.344, lng: 131.036 };
+        // The map, centered at Uluru
+         map = new google.maps.Map(document.getElementById("map"), {
+          zoom: 4,
+          center: uluru,
+        });
+        // The marker, positioned at Uluru
+        const marker = new google.maps.Marker({
+          position: uluru,
+          map: map,
+        });
+      }
+    </script>
+
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBD77-EivcGrFUZAn0sLFA33xachzYoUkw&callback=initMap">
+    </script> -->
+
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+    <section class="content-item" id="comments">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8">
+                    <form>
+                        <h3 class="pull-left">من فضلك ادخل تعليقك</h3>
+                        <button type="submit" class="btn btn-normal pull-right" (click)="submit()">إرسال</button>
+                        <fieldset>
+                            <div class="row">
+                                <div class="col-sm-3 col-lg-2 hidden-xs">
+                                    <img class="img-responsive" style="border-radius: 50%;" src="https://bootdey.com/img/Content/avatar/avatar1.png" alt=""   width="80"
+                                  height="80">
+                                </div>
+                                <div class="form-group col-xs-12 col-sm-9 col-lg-10">
+                                    <textarea [(ngModel)]="yourComment" class="form-control" id="message" placeholder="Your message" required=""></textarea>
+                                    <p-rating [(ngModel)]="Userval" iconCancelClass=null  ></p-rating>
+                                </div>
+                            </div>
+                        </fieldset>
+                    </form>
+
+                    <h3>{{arrlen}} التعليقات</h3>
+
+                    <!-- new comment - start -->
+                    <!-- <div class="media" [hidden]="" >
+                      <a class="pull-left" href="#"><img class="media-object" src="" alt=""></a>
+                      <div class="media-body">
+                          <h4 class="media-heading">diana</h4>
+                          <p >{{addComment}}</p>
+                          <ul class="list-unstyled list-inline media-detail pull-left">
+                              <li><i class="fa fa-calendar"></i></li>
+                              <li><i class="fa fa-thumbs-up"></i>1555</li>
+                              <p-rating [(ngModel)]="addval" iconCancelClass=null disabled=true></p-rating>
+                          </ul>
+                          <ul class="list-unstyled list-inline media-detail pull-right">
+                              <li class=""><a href="">Like</a></li>
+                              <li class=""><a href="">Reply</a></li>
+                          </ul>
+                      </div>
+                  </div> -->
+                  <!-- new comment - end -->
+
+     <!-- COMMENT 2 - START -->
+     <div class="containerr" [class.show]="show">
+     <div class="media" *ngFor="let rev of Data">
+     <a style="text-decoration: none;" *ngIf="getProfilePicture() == true" class="pull-left" href="/UserProfile"><img style="border-radius: 50% ;" class="media-object" [src]="clientService.currentUser.user.user_Image" alt="User Image"></a>
+     <a style="text-decoration: none;" class="pull-left"*ngIf="getProfilePicture() == false"><p-avatar id="user-avatar" class="media-object" [label]="currentUser.username[0].toUpperCase() + currentUser.username[1].toUpperCase()" size="xlarge"></p-avatar></a>
+      <div class="media-body">
+          <h4 class="media-heading">{{rev.username}}</h4>
+          <p>{{rev.ucomment}}</p>
+          <ul class="list-unstyled list-inline media-detail pull-left">
+              <li><i class="fa fa-calendar"></i></li>
+              <li><i class="fa fa-thumbs-up"></i>13</li>
+              <p-rating [(ngModel)]="rev.rate" iconCancelClass=null disabled=true></p-rating>
+          </ul>
+          <ul class="list-unstyled list-inline media-detail pull-right">
+              <li class=""><a href="">Like</a></li>
+              <li class=""><button  (click)="invokeHub(rev.author_name,rev.text)" >Report</button></li>
+          </ul>
+      </div>
+    </div>
+    <!-- COMMENT 2 - END -->
+
+                    <!-- COMMENT 1 - START -->
+                    <div class="media" *ngFor="let rev of place.result.reviews">
+                        <a class="pull-left" href="#"><img class="media-object" src={{rev.profile_photo_url}} alt=""></a>
+                        <div class="media-body">
+                            <h4 class="media-heading">{{rev.author_name}}</h4>
+                            <p>{{rev.text}}</p>
+                            <ul class="list-unstyled list-inline media-detail pull-left">
+                                <li><i class="fa fa-calendar"></i>{{rev.relative_time_description}}</li>
+                                <li><i class="fa fa-thumbs-up"></i>13</li>
+                                <p-rating [(ngModel)]="rev.rating" iconCancelClass=null disabled=true></p-rating>
+                            </ul>
+                            <ul class="list-unstyled list-inline media-detail pull-right">
+                                <li class=""><a href="">Like</a></li>
+                                <li class=""><button class="btn btn-link" (click)="invokeHub(rev.author_name,rev.text)">Report</button></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- COMMENT 1 - END -->
+                    <!-- COMMENT 2 - START -->
+                    <!-- <div class="media">
+                        <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar2.png" alt=""></a>
+                        <div class="media-body">
+                            <h4 class="media-heading">John Doe</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <ul class="list-unstyled list-inline media-detail pull-left">
+                                <li><i class="fa fa-calendar"></i>27/02/2014</li>
+                                <li><i class="fa fa-thumbs-up"></i>13</li>
+                            </ul>
+                            <ul class="list-unstyled list-inline media-detail pull-right">
+                                <li class=""><a href="">Like</a></li>
+                                <li class=""><a href="">Reply</a></li>
+                            </ul>
+                        </div>
+                    </div> -->
+                    <!-- COMMENT 2 - END -->
+
+                    <!-- COMMENT 3 - START -->
+                    <!-- <div class="media">
+                        <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar3.png" alt=""></a>
+                        <div class="media-body">
+                            <h4 class="media-heading">John Doe</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <ul class="list-unstyled list-inline media-detail pull-left">
+                                <li><i class="fa fa-calendar"></i>27/02/2014</li>
+                                <li><i class="fa fa-thumbs-up"></i>13</li>
+                            </ul>
+                            <ul class="list-unstyled list-inline media-detail pull-right">
+                                <li class=""><a href="">Like</a></li>
+                                <li class=""><a href="">Reply</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- COMMENT 3 - END -->
+
+                    <!-- COMMENT 4 - START -->
+                    <!-- <div class="media">
+                        <a class="pull-left" href="#"><img class="media-object" src="https://bootdey.com/img/Content/avatar/avatar4.png" alt=""></a>
+                        <div class="media-body">
+                            <h4 class="media-heading">John Doe</h4>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                            <ul class="list-unstyled list-inline media-detail pull-left">
+                                <li><i class="fa fa-calendar"></i>27/02/2014</li>
+                                <li><i class="fa fa-thumbs-up"></i>13</li>
+                            </ul>
+                            <ul class="list-unstyled list-inline media-detail pull-right">
+                                <li class=""><a href="">Like</a></li>
+                                <li class=""><a href="">Reply</a></li>
+                            </ul>
+                        </div>
+                    <!-- </div> -->
+                    <!-- COMMENT 4 - END -->
+
+
+
+                    </div>
+                    <button (click)="show = !show">{{ show ? 'Show less': 'Show More' }}</button>
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+<!--
+    <div *ngIf="apiLoaded | async">
+      <google-map [options]="options"></google-map>
+    </div>
+     -->
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,154 @@
+<!--
+
+ <div class="container">
+  <div class="d-flex justify-content-center h-100">
+    <div class="card">
+      <div class="card-header">
+      <h2 >إنشاء حساب</h2>
+ </div>
+
+ <div class="card-body ">
+  <form  >
+    <div class="input-group form-group ">
+      <div class="input-group-prepend">
+        <span class="input-group-text"><i class="fas fa-user"></i></span>
+      
+                                   <label for="name">اسم المستخدم</label>
+                                   <input type="text"  [(ngModel)]='name' name="name">
+                                  </div><br>
+                                   <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                  
+                                   <label for="email">البريدالاكتروني</label>
+                                   <input type="email"   [(ngModel)]='email' name="email" >
+                                  </div> 
+                                   <div class="input-group form-group">
+                                    <div class="input-group-prepend">
+                                      <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                    
+                                   <label for="telephone">كلمة الــــمــــرور</label>
+                                   <input type="password"  [(ngModel)]='pass' name="pass" >
+                                  </div></div>
+                                   <div class="form-group">
+                                   <button (click)="register()">تسجيل</button>
+                                 </div>
+                      </div></div>
+                              
+-->
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+     <head>
+          <title>Login Page</title>
+        <!--Made with love by Mutiullah Samim -->
+        <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+     <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+     <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+          <!--Bootsrap 4 CDN-->
+          <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+          
+          <!--Fontawesome CDN-->
+          <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU" crossorigin="anonymous">
+     
+          <!--Custom styles-->
+          <link rel="stylesheet" type="text/css" href="register.component.css">
+     </head>
+     <body>
+     <div class="container">
+          <div class="d-flex justify-content-center h-100">
+               <div class="card">
+                    <!-- <div class="card-header">
+                         <h3></h3>
+                         <div class="d-flex justify-content-end social_icon float-left">
+                              <span><i class="fab fa-facebook-square"></i></span>
+                              <span><i class="fab fa-google-plus-square"></i></span>
+                              <span><i class="fab fa-twitter-square"></i></span>
+                         </div>
+                    </div> -->
+                    <div class="card-body ">
+                         <form>
+                              <div class="wow fadeInUp" data-wow-delay="0.3s">
+                                   <div class="col-md-12 col-sm-12">
+                                     <label for="name" style="color: white; float: right;">الاسم</label>
+                                     <input type="text" class="form-control" id="name" name="name" [(ngModel)]="name" placeholder="اسم المستخدم" style="text-align:right">
+                                     <label for="email" style="color: white;float: right;">البريد الاكتروني</label>
+                                     <input type="email" class="form-control" id="email" name="email" [(ngModel)]="email" placeholder="البريد الاكتروني" style="text-align:right">
+                                     <label for="password" style="color: white;float: right;">كلمة المرور</label>
+                                     <input type="password" class="form-control" id="password" name="password" [(ngModel)]="pass"  placeholder="كلمة المرور" style="text-align:right">
+                                     <button type="submit" class="form-control mt-3 center" id="cf-submit"  (click)="register()" name="submit" color style="background-color: #e9e7e8; color: #021830; border: none; width: 100px; float: left;">تسجيل</button>
+                                   </div>
+                              </div>
+                              <!-- <div class="input-group form-group ">
+                                   <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-user"></i></span>
+                                   </div>
+                                   <input type="text" class="form-control "  [(ngModel)]="name" placeholder="اسم المستخدم">
+                                   
+                              </div>
+                              <div class="input-group form-group ">
+                                   <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-envelope"></i></span>
+                                   </div>
+                                   <input type="email" class="form-control "  [(ngModel)]="email" placeholder="البريدالاكتروني">
+                                   
+                              </div>
+                              <div class="input-group form-group">
+                                   <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                   </div>
+                                   <input type="password" class="form-control " [(ngModel)]="pass" class="text-align-right"  placeholder="كلمه المرور"  >
+                              </div>
+                              
+                              <div class="form-group">
+                                   <input type="submit" value="تسجيل"  (click)="register()" class="btn float-left login_btn">
+                              </div> -->
+                         </form>
+                    </div>
+                    <div class="card-footer">
+                       
+                    </div>
+                    <!-- <section id="appointment" data-stellar-background-ratio="3">
+                         <div class="container">
+                              <div class="row">
+                 
+                          
+                                   <div class="col-md-6 col-sm-6 text-align-right">
+                                        
+                                        <form id="appointment-form" role="form" method="post" action="#">
+                 
+                                            
+                                             <div class="section-title wow fadeInUp" data-wow-delay="0.4s" text>
+                                                  <h2 >إنشاء حساب</h2>
+                                             </div>
+                 
+                                             <div class="wow fadeInUp" data-wow-delay="0.8s">
+                                                  <div class="col-md-12 col-sm-12">
+                                                    <label for="name">الاسم</label>
+                                                    <input type="text" class="form-control" id="name" name="name" placeholder="اسم المستخدم" style="text-align:right">
+                                                    <label for="email">البريد الاكتروني</label>
+                                                    <input type="email" class="form-control" id="email" name="email" placeholder="البريد الاكتروني" style="text-align:right">
+                                                    <label for="telephone">كلمة المرور</label>
+                                                    <input type="tel" class="form-control" id="password" name="password" placeholder="كلمة المرور" style="text-align:right">
+                                                    <button type="submit" class="form-control" id="cf-submit" name="submit" color>تسجيل</button>
+                                                  </div>
+                                             </div>
+                                       </form>
+                                   </div>
+                 
+                                 <div class="col-md-6 col-sm-6">
+                                     <img src="../../../assets/images/doc.webp" class="img-responsive" alt="">
+                                 </div>
+                 
+                 
+                              </div>
+                         </div>
+                    </section> -->
+                 
+               </div>
+          </div>
+     </div>
+     </body>
+     </html>
+                  
+
+                 

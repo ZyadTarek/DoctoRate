@@ -1,0 +1,380 @@
+
+
+<div id="home" class="slider">
+<div class="container ">
+    <div class="filter">
+        <div class="row filter2 mx-auto " >
+            <div class="col">
+                <div class="row"><label for="type">التخصص</label></div>
+                <div class="row mx-auto"><p-dropdown  [options]="types" [(ngModel)]="selectedType" optionLabel="type_name_ar" optionValue="type_id"></p-dropdown></div>
+            </div>
+            <div class="col">
+                <div class="row"><label for="type"> تخصص الطبيب</label></div>
+                <div class="row mx-auto"><p-dropdown [disabled]="selectedType!=1"  [options]="Specializations" [(ngModel)]="selectedSpec" optionLabel="spec_name_ar" optionValue="id"></p-dropdown></div>
+            </div>
+            <div class="col">
+                <div class="row"><label for="gov">المحافظة</label></div>
+                <div class="row mx-auto"><p-dropdown  filter="true" (onChange)="changeGover()"  [options]="govers" [(ngModel)]="selectedGover" optionLabel="governorate_name_ar" optionValue="id"></p-dropdown> </div>
+            </div>
+            <div  class="col">
+                <div  class="row"><label for="city">المنطقة</label></div>
+                <div  class="row mx-auto"><p-dropdown filter="true" [options]="cities" [(ngModel)]="selectedCity" optionLabel="city_name_ar" optionValue="id"></p-dropdown> </div>
+            </div>
+        </div>
+        <div class="row filter2 mt-3 mx-auto " >
+            <div class="col-6">
+                <div>
+                    <span class="p-input-icon-right">
+                        <i class="pi pi-search"></i>
+                        <input type="text" pInputText [(ngModel)]="searchText" placeholder=" ابحث عن...">
+                    </span>
+                </div>
+            </div>
+
+            <div class="col-3">
+                <p-checkbox label="مفتوح الان"  [(ngModel)]="openNowFlag" binary="true" ></p-checkbox>
+            </div>
+        </div>
+
+        <!-- </div> -->
+        <div class="row filter2">
+            <div class="col-9 text-center">
+                <button (click)="search()" type="button" style="width: 120px; background-color: #021830;" class="btn btn-dark m-2" >بحث</button>
+            </div>
+            <div class="col-2">
+                <button  (click)="clearFilter()" type="button" style="width: 120px;" class="btn btn-danger mt-2 mr-auto">حذف المحدد</button>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+</div>
+
+<div  id="offer">
+    <div *ngIf="!searchFlag" class="container mt-3">
+        <div class="row">
+            <p  style="float: right;" >عروض  </p>
+        </div>
+        <div class="cards" >
+        <div class="row mx-5">
+        <a  *ngFor="let item of offers" [routerLink]="['/Detail', item.place_id]" >
+            <div class="col-md mr-1">
+                <div class="card team-thumb wow fadeInUp" data-wow-delay="0.2s" style="width: 19rem; height: 350px; background-color: rgba(2,24,48,0.9); color: white; border-radius: 10%;">
+
+                    <img [src]="item.img_src"  class="card-img-top  w-75" style=" border-radius: 15%;  margin-right: 35px; margin-top: 17px;"  alt="...">
+                    <!-- [src]="item.icon" -->
+                    <div class="card-body">
+
+
+            <!-- <div class="card" >
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-2"><img width="70" height="70" [src]="item.img_src"></div>
+                  <div class="col-8">
+                    <div class="card-body"> -->
+                      <div class="row">{{item.place_name}}</div>
+                      <div class="row"> تقييم {{item.rate}}  </div>
+                      <div class="row"> {{item.offer_percent}} % </div>
+                      <div class="row"> الخصم يشمل : {{item.comment}} </div>
+                    </div>
+                  </div>
+
+                </div>
+        </a>
+
+        <button routerLink="/offer" type="button" style="width: 120px; background-color: #021830; color: white;" class="btn btn-dark m-2">عرض المزيد</button>
+        <button (click)="getLocation()" *ngIf="!allowLocationFlag" type="button"  class=" btn btn-dark" style="background-color: #021830; color: white;">حدد مكانك لرؤية  الاماكن القريبة </button>
+
+         </div>
+        </div>
+    </div>
+</div>
+
+<div id="nearPlaces">
+    <div class="container" *ngIf="!searchFlag">
+        <div class="row">
+            <p  style="float: right;" *ngIf="allowLocationFlag">أماكن قريبة منك </p>
+        </div>
+        <div class="cards" >
+        <div class="row mx-5">
+        <!-- <p class="mr-auto" *ngIf="allowLocationFlag">اماكن قريبة منك </p> -->
+        <a  *ngFor="let item of nearPlaces" [routerLink]="['/Detail', item.place_id]" >
+                <div class="col-md mr-1">
+                    <div class="card team-thumb wow fadeInUp" data-wow-delay="0.2s" style="width: 19rem; height: 350px; background-color: rgba(2,24,48,0.9); color: white; border-radius: 10%;">
+
+                        <img src="../../assets/images/73801443c999f5c6083daf69f9e29c1c.webp"  class="card-img-top  w-75" style=" border-radius: 15%;  margin-right: 35px; margin-top: 17px;"  alt="...">
+                        <!-- [src]="item.icon" -->
+                        <div class="card-body">
+                          <h5 class="card-tit3e" style="text-align: right;">{{item.name}}</h5>
+                          <p class="card-text" style="text-align: right;">{{item.rating}}</p>
+                          <p class="card-text" style="text-align: right;">{{item.formatted_address}}</p>
+                        </div>
+                    </div>
+                </div>
+
+                      <!-- </div> -->
+                  <!-- <div class="col-2"><img width="70" height="70" [src]="item.icon"></div>
+                  <div class="col-8">
+                    <div class="card-body">
+                      <div class="row">{{item.name}}</div>
+                      <div class="row"> تقييم {{item.rating}}  </div>
+                      <div class="row"> {{item.formatted_address}}  </div>
+                    </div>
+                  </div> -->
+        <!--
+                </div>
+              </div>
+            </div> -->
+        </a>
+
+    </div>
+
+</div>
+</div>
+</div>
+<!-- </div> -->
+
+
+
+
+<div *ngIf="!searchFlag" class="container cards" >
+    <div class="row m-5">
+        <div (click)="selCard('pharmacy')" class="col-md">
+            <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
+                <img width="100%" height="35%" src="../../assets/img/home/pharmacy.webp" class="img-responsive" alt="">
+                <div class="team-info" style="margin-bottom:50px; text-align: center;">
+                    <h3>صيدليات</h3>
+                </div>
+            </div>
+        </div>
+        <div (click)="selCard('hospital')" class="col-md">
+            <div class="team-thumb wow fadeInUp" data-wow-delay="0.4s">
+                <img width="100%" height="35%" src="../../assets/img/home/hospital.webp" class="img-responsive" alt="">
+                <div class="team-info" style="margin-bottom:50px; text-align: center;">
+                    <h3>مستشفيات</h3>
+                </div>
+            </div>
+        </div>
+        <div (click)="selCard('doctor')" class="col-md">
+            <div class="team-thumb wow fadeInUp" data-wow-delay="0.6s">
+                <img width="100%" height="35%" src="../../assets/img/home/doctor.webp" class="img-responsive" alt="">
+                <div class="team-info" style="margin-bottom:50px; text-align: center;">
+                    <h3>عيادات</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row m-5">
+        <div (click)="selCard('physiotherapist')" class="col-md">
+            <div class="team-thumb wow fadeInUp" data-wow-delay="0.2s">
+                <img width="100%" height="35%" src="../../assets/img/home/physical therapy.webp" class="img-responsive" alt="">
+                <div class="team-info" style="margin-bottom:50px; text-align: center;">
+                    <h3>علاج طبيعي</h3>
+                </div>
+            </div>
+        </div>
+        <div (click)="selCard('dentist')" class="col-md">
+            <div class="team-thumb wow fadeInUp" data-wow-delay="0.4s">
+                <img width="100%" height="35%" src="../../assets/img/home/dentist.webp" class="img-responsive" alt="">
+                <div class="team-info" style="margin-bottom:50px; text-align: center;">
+                    <h3>اسنان</h3>
+                </div>
+            </div>
+        </div>
+        <div (click)="selOther()" class="col-md">
+            <div class="team-thumb wow fadeInUp" data-wow-delay="0.6s">
+                <img width="100%" height="35%" src="../../assets/img/home/others.webp" class="img-responsive" alt="">
+                <div class="team-info" style="margin-bottom:50px; text-align: center;">
+                    <h3>تحاليل و اشعة</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <p-checkbox label="مفتوح" [(ngModel)]="openNowFlag" binary="true" ></p-checkbox>
+<button  (click)="clearFilter()">clear filters</button> -->
+
+<div *ngIf="searchRetFlag" class="container" style="text-align: right; ">
+    <h3 class="m-2">لا يوجد نتائج للبحث </h3>
+    <h4 class="m-2"> جرب تعميم البحث او تقليل الاختيارات </h4>
+</div>
+
+<!-- <p-carousel *ngFor="let item of display_places" [routerLink]="['/Detail', item.place_id]">
+    <ng-template let-car pTemplate="item">
+        <div class="row">
+            <div class="col-2"><img width="100" height="100" style="border-radius: 50%;" [src]="item.icon"></div>
+            <div class="col-8">
+              <div class="card-body">
+                <div class="row">{{item.name}}</div>
+                <div class="row right">{{item.opening_hours}}</div>
+                <div class="row">{{item.formatted_address}}</div>
+                <div class="row">{{item.rating}}</div>
+              </div>
+            </div>
+
+          </div>
+    </ng-template>
+</p-carousel> -->
+
+
+<div *ngIf="searchFlag"  >
+    <div class="container">
+        <div class="row mt-3 mb-3">
+            <div class="col-6" *ngFor="let item of display_places">
+                <a [routerLink]="['/Detail', item.place_id]">
+                    <div class="card" [style.background-color]="item.color" style="color: #021830; margin: 5px; border: none; height:160px;" >
+                        <div class="card-body">
+                          <div class="row">
+                            <div class="col-2"><img width="80" height="80" style="border-radius: 50%; " [src]="item.icon"></div>
+                            <div class="col-10">
+                              <div class="card-body">
+                                <div class="row">{{item.name}}</div>
+                                <div class="row right">{{item.opening_hours}}</div>
+                                <div class="row">{{item.formatted_address}}</div>
+                                <div class="row">{{item.rating}}</div>
+                              </div>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                </a>
+            </div>
+        </div>
+        <button   type="button" style="width: 120px; background-color: #021830; color: white; margin-bottom: 10px;" class="btn mt-2 mr-auto" *ngIf="!searchRetFlag" [disabled]="prevFlag" (click)="prev()"> < </button>
+        <button   type="button" style="width: 120px;background-color: #021830; color: white; margin-bottom: 10px;" class="btn mt-2 mr-auto"*ngIf="!searchRetFlag" [disabled]="nextFlag" (click)="next()"> > </button>
+    </div>
+</div>
+
+
+<div *ngIf="false" class="container" >
+    <div class="container m-3">
+        <a  *ngFor="let item of display_places" [routerLink]="['/Detail', item.place_id]" >
+          <!-- <div class="card" style="background-color:rgba(208, 238, 255,0.5); margin: 10px; border: none;" > -->
+            <div class="card" style="background-color:rgba(85, 193, 255, 0.5); margin: 10px; border: none;" >
+            <div class="card-body">
+              <div class="row">
+                <div class="col-2"><img width="100" height="100" style="border-radius: 50%;" [src]="item.icon"></div>
+                <div class="col-8">
+                  <div class="card-body">
+                    <div class="row">{{item.name}}</div>
+                    <div class="row right">{{item.opening_hours}}</div>
+                    <div class="row">{{item.formatted_address}}</div>
+                    <div class="row">{{item.rating}}</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </a>
+
+
+
+        <!-- <button *ngIf="moreFlag" (click)="seeMore()" type="button" class="btn btn-info m-3">اضغط للمزيد من النتائج</button> -->
+        <!-- <div class="btn-group btn-group-toggle" data-toggle="buttons" style="float: right;"> -->
+
+            <!-- <label class="btn btn-secondary">
+              <input type="button" name="options" id="option3" *ngIf="!searchRetFlag" [disabled]="prevFlag" (click)="prev()"> <
+            </label>
+            <label class="btn btn-secondary ">
+                <input type="button" name="options" id="option1"  *ngIf="!searchRetFlag" [disabled]="nextFlag" (click)="next()"> >
+            </label> -->
+          <!-- </div> -->
+          <button   type="button" style="width: 120px; background-color: #021830; color: white; margin-bottom: 10px;" class="btn mt-2 mb-2 mr-auto" *ngIf="!searchRetFlag" [disabled]="prevFlag" (click)="prev()"> < </button>
+
+          <button   type="button" style="width: 120px;background-color: #021830; color: white; margin-bottom: 10px;" class="btn mt-2 mb-5 mr-auto"*ngIf="!searchRetFlag" [disabled]="nextFlag" (click)="next()"> > </button>
+
+        <!-- <button *ngIf="!searchRetFlag" [disabled]="nextFlag" (click)="next()" >next</button>
+        <button *ngIf="!searchRetFlag" [disabled]="prevFlag" (click)="prev()" >prev</button> -->
+      </div>
+</div>
+<!-- <script type="text/javascript">
+    (function () {
+        var color;
+      if (openNowFlag==true) {
+      color="green";
+      }
+      else
+      if (!openNowFlag)
+      {
+        color="red";
+      }
+      else
+      {
+        color="purple";
+      }
+   })();
+</script> -->
+
+
+
+
+
+
+
+
+<!-- <section id="home" class="slider" data-stellar-background-ratio="0.5">
+      <div class="container" style="background-color: rgba(255, 255, 255, 0.7); border-radius: 2%;">
+                    <div class="row">
+                            <div class="col-md-4 col-sm-6 " style=" margin-top:50px; margin-bottom:50px;">
+                            <div class="dropdown">
+                                <button style="width: 250px;" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                التخصص
+                                <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="col-md-4 col-sm-6" style=" margin-top:50px;margin-bottom:50px;">
+                            <div class="dropdown">
+                                <button style="width: 250px;" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                المنطقة
+                                <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="co col-md-4 col-sm-6" style=" margin-top:50px;margin-bottom:50px;">
+                            <div class="dropdown">
+                                <button style="width: 250px;" class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">
+                                التقيم
+                                <span class="caret"></span>
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="dropdownMenu1">
+                                <li><a href="#">Action</a></li>
+                                <li><a href="#">Another action</a></li>
+                                <li><a href="#">Something else here</a></li>
+                                <li role="separator" class="divider"></li>
+                                <li><a href="#">Separated link</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="text-center">
+                             <button  (click)="search()">search</button> -->
+                            <!-- <button type="button" class="btn btn-primary">Primary</button>
+                            <a (click)="aa()"  class="section-btn btn btn-default center smoothScroll " style="width: 250px;  margin-bottom: 50px; ">بحث</a>
+
+                        </div>
+                    </div>
+                </div>
+                 </div>
+            </section> -->
+            <!-- <h1>اسأل مجرب</h1> -->
+            <!-- <a href="#team" class="section-btn btn btn-default smoothScroll">التقيمات</a> -->
+
+

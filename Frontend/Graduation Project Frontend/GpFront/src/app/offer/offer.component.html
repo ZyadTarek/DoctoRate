@@ -1,0 +1,23 @@
+  
+    <div class="container ">
+        <a  *ngFor="let item of offers" [routerLink]="['/Detail', item.place_id]" >
+                    <div class="card" style=" background-color:#021830 ; color: white; margin: 5px; border: none; height:160px;" >
+                      <!-- <div class="card" > -->
+              <div class="card-body">
+                <div class="row">
+                  <div class="col-2"><img width="70" height="70" [src]="item.img_src"></div>     
+                  <div class="col-8">
+                    <div class="card-body">
+                      <div class="row">{{item.place_name}}</div>
+                      <div class="row"> تقييم {{item.rate}}  </div>
+                      <div class="row"> {{item.offer_percent}} % </div>
+                      <div class="row"> الخصم يشمل : {{item.comment}} </div>
+                    </div>
+                  </div>
+                  
+                </div>    
+              </div>
+            </div>
+        </a>
+
+    </div>   

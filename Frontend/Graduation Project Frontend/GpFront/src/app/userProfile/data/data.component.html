@@ -1,0 +1,51 @@
+
+    
+
+<div class="col-md-12" style="width: 500px; text-align: right; border-radius: 10%; padding: 20px;">
+    <div class="tab-content profile-tab" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab" >
+    <div class="row">
+        <div class="col-md-6">
+            <label>اسم المستخدم</label>
+        </div>
+        <div class="col-md-6">
+            <p>{{data.username}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>البريد الالكتروني </label>
+        </div>
+        <div class="col-md-6">
+            <p>{{data.user.email}}</p>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <label>رقم التليفون </label>
+        </div>
+        <div class="col-md-6">
+            <p> {{getPhoneNumber()}}</p>
+        </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6">
+          <label>العنوان </label>
+      </div>
+      <div class="col-md-6">
+          <p  >{{getAddress()}}</p>
+      </div>
+  </div>
+  <div class="row">
+    <div class="col-md-6">
+        <label>تاريخ الميلاد </label>
+    </div>
+  
+    <div class="col-md-6">
+        <p id="d1">{{getDOB()}}</p>
+    </div>
+  </div>
+  
+  </div>
+    </div>
+    </div>

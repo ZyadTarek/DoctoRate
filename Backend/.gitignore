@@ -1,0 +1,12 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/.vs
+/MedicalApp/Context/obj
+/MedicalApp/Models/obj
+/MedicalApp/Services/obj
+/MedicalApp/WebApi/bin/Debug/net5.0
+/MedicalApp/WebApi/obj/Debug/net5.0
+/MedicalApp/.vs/MedicalApp
+/MedicalApp/WebApi/obj
